@@ -244,10 +244,18 @@ code { font-family: var(--mono); }
 /* emphasize headline numbers */
 .md-body h2:has(+ ul) { color: var(--text); }
 
-/* SHA/PR refs linkified at render time (linkifyRefs) — make wrapped chips read native */
+/* SHA/PR refs linkified at render time (linkifyRefs) — read clearly as links */
 .md-body a:has(code) { text-decoration: none; }
-.md-body a code { color: inherit; cursor: pointer; }
-.md-body a:has(code):hover code { border-color: var(--accent); }
+.md-body a code {
+  color: var(--accent); cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  text-underline-offset: 2px;
+}
+.md-body a:has(code):hover code {
+  border-color: var(--accent);
+  text-decoration-color: var(--accent);
+}
 
 /* ---- copy button on code blocks ---- */
 .code-wrap { position: relative; }
@@ -288,8 +296,9 @@ code { font-family: var(--mono); }
   background: linear-gradient(90deg, var(--flutter-blue-2), transparent);
 }
 .theme-card:hover { transform: translateY(-3px); border-color: var(--accent); }
-.theme-card-title { font-size: 1rem; color: var(--text); margin: 0 0 8px; padding: 0; border: none; }
-.theme-card-title::before { content: none; } /* override .md-body h3::before bar */
+/* scoped under .md-body so these win over `.md-body h3` / `.md-body h3::before` */
+.md-body .theme-card-title { font-size: 1.04rem; margin: 0 0 8px; padding: 0; border: none; gap: 0; }
+.md-body .theme-card-title::before { content: none; display: none; } /* remove the left accent bar */
 .theme-card-body { color: var(--text-dim); font-size: .92rem; }
 .theme-card-body p:first-child { margin-top: 0; }
 .theme-card-body ul { padding-left: 18px; margin: 8px 0 0; }

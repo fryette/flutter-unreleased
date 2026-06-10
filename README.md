@@ -21,13 +21,20 @@ result files here.
 Steps:
 1. Latest STABLE: from https://docs.flutter.dev/release/release-notes and the `stable`
    branch, find the current stable version + tag and its bundled Dart version.
-2. Next release: read `bin/internal/release-candidate-branch.version` on the `beta` branch
-   -> `flutter-X.Y-candidate.0` = the next stable version baking on beta.
+2. Next versions: read `bin/internal/release-candidate-branch.version` on the `beta` branch
+   -> `flutter-X.Y-candidate.0` = the next stable (e.g. 3.45) baking on beta. ALSO track the
+   version after it (e.g. 3.46), which is what `main` is currently bound to. Flutter sometimes
+   SKIPS a version, so always reason about BOTH the beta-bound and the main-bound version and
+   record both in the Snapshot. Pin the next-version branch-cut SHA if you want a clean
+   "in <next> (beta)" vs "<next+1>-only (still on main)" split.
 3. Branch-cut point: on branch `flutter-<latest-stable-minor>-candidate.0`, walk back to the
    commits "Add release branch version for <ver>" and "Update to the beta dart version for
    <ver> branch cut"; record that date. Everything on `main` AFTER it is unreleased.
-4. Mine `main` for unreleased feature work from the cut date to today. Use cheap subagents
-   (model: sonnet) split by ~3-week date windows. Each subagent:
+4. INCREMENTAL MINE (don't re-fetch the whole history each run): start from the **last
+   processed `main` HEAD** recorded in the Snapshot block (`main HEAD <sha>`). Fetch only the
+   commits on `main` SINCE that SHA up to the current HEAD — that's the new slice to fold in.
+   Only on a first run (no recorded HEAD) fall back to mining from the branch-cut date. For
+   large slices, use cheap subagents (model: sonnet) split by date window. Each:
      - calls mcp__github__list_commits owner=flutter repo=flutter sha=main
        since=<start> until=<end> perPage=100, paginating until a page has <100 commits
        (large results auto-save to a file);
@@ -36,18 +43,27 @@ Steps:
        "Update Flutter DEPS to Dart", "Sync engine.version", "Roll pub packages",
        ^Reverts "Roll), plus CI/test-only/refactor/dot-shorthand/localization churn;
      - returns a <=350-word grouped digest (one line per item, short SHA + PR #).
-5. Synthesize into headline themes first, then grouped detail: Framework/widgets, Material,
-   Cupertino/iOS, Android, Web/WASM, Desktop, Engine/Impeller, Flutter GPU, Dart/tooling,
-   Deprecations/breaking. Flag reverted / in-flux items. State plainly that these are raw
-   merged commits, NOT official release notes (Flutter only writes those at stable).
-6. Write results: overwrite `data/unreleased-pipeline.md` with the new digest and update the
-   Snapshot block at the top of `README.md` (Last refreshed / Latest stable / Next stable /
-   main HEAD / branch-cut date). The SPA (`index.html`) reads these files live, so the
-   published site updates automatically once the changes are pushed.
+5. REVERTS — if a commit in the new slice reverts something already listed in
+   `data/unreleased-pipeline.md` (subject `Revert "<X>"` or `Reverts <sha>`), DELETE the
+   reverted item from the digest entirely. Do not keep "reverted / in-flux" lines — the digest
+   should reflect only what is currently live on `main`.
+6. DART CHANGELOG — if the new slice contains Dart-facing changes (a Dart SDK version/minor
+   roll, or commits touching the Dart embedding/SDK constraint), also fetch the matching entries
+   from https://raw.githubusercontent.com/dart-lang/sdk/main/CHANGELOG.md (the unreleased /
+   next-version section) and add a short **Dart SDK** subsection summarizing them.
+7. Synthesize/merge into the existing file: headline themes first, then grouped detail:
+   Framework/widgets, Material, Cupertino/iOS, Android, Web/WASM, Desktop, Engine/Impeller,
+   Flutter GPU, Dart/tooling (+ Dart SDK when present), Deprecations/breaking. MERGE the new
+   slice into the existing groups rather than rewriting from scratch. State plainly that these
+   are raw merged commits, NOT official release notes (Flutter only writes those at stable).
+8. Write + CHECKPOINT: overwrite `data/unreleased-pipeline.md` with the merged digest and update
+   the Snapshot block at the top of `README.md` (Last refreshed / Latest stable / Next stable /
+   main-bound version / **main HEAD = the new HEAD you just processed** / branch-cut date). That
+   recorded HEAD is the checkpoint the NEXT run resumes from — commit it so progress is saved and
+   the next run only fetches forward from there. The SPA reads these files live, so pushing
+   updates the published site.
 
 Tools: prefer the GitHub MCP tools (mcp__github__*) and WebFetch. Keep autoroll noise out.
-Optional: pin the next-version branch-cut commit and split the list into
-"in <next> (beta)" vs "<next+1>-only (still on main)".
 ```
 
 ---

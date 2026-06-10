@@ -27,8 +27,6 @@ dialog window types; platform-handle exposure (`5463d9c`). Breaking: removed `de
 **6. Android: AGP 9 + Android 17 readiness.** Templates/test apps → AGP 9 (`ff31522`/`4a41b27`); **API 37** build tools (`0a1f556`);
 edge-to-edge fixes; MediaTek visual-corruption fix (`53a82b6`).
 
-**7. Dart 3.13 incoming.** SDK constraint bumped to `^3.13.0` (`df8cb09`) then reverted (`b2e3cc4`) — the usual "next release moves off 3.12" signal.
-
 ## Grouped detail
 
 ### Framework / widgets
@@ -76,10 +74,11 @@ edge-to-edge fixes; MediaTek visual-corruption fix (`53a82b6`).
 - `flutter clean --include-example` (`6defbc6`); faster monorepo `pub get` via shared `PackageGraph` (`2e3b7c0`); glob workspace patterns (`4d019c4`)
 - `flutter create` crash fixed when SDK packages live in `bin/cache/pkg` (`945a9db`, #187653); Dart embedding API `Dart_LoadELF2` renamed back to `Dart_LoadELF` (`4578896`, #187677)
 
-### Deprecations / breaking / in-flux
+### Deprecations / breaking
 - Windowing: `decorated` flag removed, replaced by sized-to-content window types (`09380fe`)
-- Dart `^3.13.0` constraint bump **reverted** (`df8cb09`→`b2e3cc4`); web shader-recompile, `VSyncClient` Obj-C/Swift moves, and stylus-button support each reverted/relanded at least once
+- Minimum iOS deployment target bumped (`ab1032d`); `ReorderableListView` / `CupertinoSheetRoute` signature changes carried over from 3.44
 
 ## Caveats
-- Not version-pinned. 3.45 is already cut to `beta`, so the April–May items are likely in 3.45 and the June items in 3.46 — but confirming needs the 3.45 branch-cut SHA.
-- Raw merged commits; reverts happen. Treat as a directional preview, not a guarantee.
+- Reverted commits are dropped from this digest — only changes currently live on `main` are listed.
+- Not version-pinned. 3.45 is cut to `beta`; later items will ride **3.46** (and Flutter may skip a version, so both are tracked).
+- Raw merged commits. Treat as a directional preview, not a guarantee.
