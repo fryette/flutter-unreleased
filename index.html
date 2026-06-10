@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flutter — Unreleased SDK Tracker</title>
+  <meta name="description" content="What has landed on flutter/flutter main but not yet shipped in a stable release. Auto-refreshed digest of unreleased Flutter SDK work." />
+  <meta name="color-scheme" content="dark light" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Flutter — Unreleased SDK Tracker" />
+  <meta property="og:description" content="What's merged on flutter/flutter main but not yet in a stable release." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%2354C5F8' d='M14 50 50 14h28L28 64z'/%3E%3Cpath fill='%2301579B' d='M50 86 28 64l14-14 36 36z'/%3E%3Cpath fill='%2329B6F6' d='M42 50 28 64l14 14 14-14z'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <div class="progress-bar" id="scroll-progress"></div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Flutter Unreleased Tracker home">
+        <svg class="brand-logo" viewBox="0 0 100 100" aria-hidden="true">
+          <path fill="#54C5F8" d="M14 50 50 14h28L28 64z" />
+          <path fill="#01579B" d="M50 86 28 64l14-14 36 36z" />
+          <path fill="#29B6F6" d="M42 50 28 64l14 14 14-14z" />
+        </svg>
+        <span class="brand-text">Flutter <strong>Unreleased</strong></span>
+      </a>
+      <nav class="top-nav" id="top-nav" aria-label="Sections">
+        <a href="#pipeline" class="nav-link" data-section="pipeline">Pipeline</a>
+        <a href="#structure" class="nav-link" data-section="structure">Branch model</a>
+        <a href="#refresh" class="nav-link" data-section="refresh">Refresh</a>
+      </nav>
+      <div class="header-actions">
+        <a class="ghlink" href="https://github.com/flutter/flutter" target="_blank" rel="noopener" title="flutter/flutter on GitHub">
+          <svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle color theme" title="Toggle theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 16a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1zM4.22 4.22a1 1 0 0 1 1.42 0l1.42 1.42A1 1 0 1 1 5.64 7.06L4.22 5.64a1 1 0 0 1 0-1.42zm12.72 12.72a1 1 0 0 1 1.42 0l1.42 1.42a1 1 0 1 1-1.42 1.42l-1.42-1.42a1 1 0 0 1 0-1.42zM2 12a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1zm16 0a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1zM5.64 16.94a1 1 0 0 1 0 1.42l-1.42 1.42a1 1 0 1 1-1.42-1.42l1.42-1.42a1 1 0 0 1 1.42 0zM18.36 4.22a1 1 0 0 1 1.42 1.42l-1.42 1.42a1 1 0 1 1-1.42-1.42l1.42-1.42z"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M21.64 13a1 1 0 0 0-1.05-.14 8 8 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8 8 0 0 1 .25-2 1 1 0 0 0-1.31-1.21A10.14 10.14 0 1 0 22 14.05a1 1 0 0 0-.36-1.05z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-badge"><span class="dot"></span> Tracking <code>flutter/flutter</code> · <code>main</code></div>
+        <h1>What's <span class="grad">unreleased</span> in Flutter</h1>
+        <p class="hero-sub">
+          Everything merged to <code>main</code> that hasn't shipped in a stable release yet —
+          a directional preview of the next Flutter & Dart, distilled from raw commits.
+          <strong>Not</strong> official release notes.
+        </p>
+        <div class="stat-grid" id="stat-grid" aria-live="polite">
+          <!-- stat cards injected -->
+          <div class="stat-card skeleton"></div>
+          <div class="stat-card skeleton"></div>
+          <div class="stat-card skeleton"></div>
+          <div class="stat-card skeleton"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap content-wrap">
+      <!-- PIPELINE -->
+      <section id="pipeline" class="doc-section">
+        <div class="section-head">
+          <h2><span class="section-num">01</span> Unreleased pipeline</h2>
+          <p class="section-tag">The grouped digest of <code>main</code> work past the last stable branch-cut.</p>
+        </div>
+        <article class="md-body" id="md-pipeline">
+          <div class="loading">Loading pipeline…</div>
+        </article>
+      </section>
+
+      <!-- STRUCTURE -->
+      <section id="structure" class="doc-section">
+        <div class="section-head">
+          <h2><span class="section-num">02</span> Branch model &amp; release anatomy</h2>
+          <p class="section-tag">How <code>main → beta → stable</code> works, and how the current stable was built.</p>
+        </div>
+        <article class="md-body" id="md-structure">
+          <div class="loading">Loading…</div>
+        </article>
+      </section>
+
+      <!-- REFRESH -->
+      <section id="refresh" class="doc-section">
+        <div class="section-head">
+          <h2><span class="section-num">03</span> How this is refreshed</h2>
+          <p class="section-tag">This page is data-driven. Re-running the prompt overwrites the markdown and the site updates.</p>
+        </div>
+        <article class="md-body" id="md-readme">
+          <div class="loading">Loading…</div>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p>
+        Auto-generated tracker · data lives in
+        <a href="https://github.com/fryette/flutter-unreleased" target="_blank" rel="noopener">the repo</a>.
+        Source of truth is <code>flutter/flutter</code>.
+      </p>
+      <p class="muted">Raw merged commits, not a release guarantee. Reverts happen. Built with Claude Code.</p>
+    </div>
+  </footer>
+
+  <a href="#top" class="to-top" id="to-top" aria-label="Back to top" title="Back to top">↑</a>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>
