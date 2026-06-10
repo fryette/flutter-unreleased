@@ -64,6 +64,7 @@ edge-to-edge fixes; MediaTek visual-corruption fix (`53a82b6`).
 ### Engine / Impeller
 - Impeller default on macOS (`543b75f`); instanced rendering everywhere (`1d9d637`); block-compressed textures (`fe96572`); SDF disable per-paint (`021d999`)
 - Shadow-mask positioning fix (`308ba65`); animated-PNG overflow hardening (`9cf97ce`); UberSDF complex-RSE handling (`c7b914a`); Y-flip workaround removed (`2e8d57a`)
+- Fixed-rate texture compression now retries uncompressed when the budget is exhausted (`5177105`, #187586)
 
 ### Flutter GPU (experimental)
 - Instanced draws (`8a4cca4`), explicit draw counts (`d0d06b2`), vertex layout (`12d86bc`)
@@ -73,6 +74,7 @@ edge-to-edge fixes; MediaTek visual-corruption fix (`53a82b6`).
 - **Hot restart 2× slowdown fixed** (`1e492c7`); widget-preview zoom slider (`3ca99c3`), DTD-failure handling (`610419e`), scaffold moved into pub workspace (`26fb075`)
 - Security: reject path-escaping archive entries (`3af9fcb`), fix version-cache poisoning via git env (`3ac51d8`)
 - `flutter clean --include-example` (`6defbc6`); faster monorepo `pub get` via shared `PackageGraph` (`2e3b7c0`); glob workspace patterns (`4d019c4`)
+- `flutter create` crash fixed when SDK packages live in `bin/cache/pkg` (`945a9db`, #187653); Dart embedding API `Dart_LoadELF2` renamed back to `Dart_LoadELF` (`4578896`, #187677)
 
 ### Deprecations / breaking / in-flux
 - Windowing: `decorated` flag removed, replaced by sized-to-content window types (`09380fe`)

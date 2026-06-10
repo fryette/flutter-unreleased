@@ -4,7 +4,7 @@
 > - **Last refreshed:** 2026-06-10
 > - **Latest stable:** 3.44.1 (Dart 3.12.1)
 > - **Next stable (on `beta`):** 3.45 — branch `flutter-3.45-candidate.0`
-> - **Bleeding edge (`main` = `master`):** 3.46-bound; `main` HEAD `652238a` (2026-06-09)
+> - **Bleeding edge (`main` = `master`):** 3.46-bound; `main` HEAD `c0a1129` (2026-06-10)
 > - **3.44 release-branch cut:** 2026-04-10 — everything on `main` after this date is the "unreleased" set.
 
 This folder tracks what has landed on `flutter/flutter` **`main`** but has **not shipped in a stable release**. Re-run the prompt below any time to regenerate the data files with fresh results.
