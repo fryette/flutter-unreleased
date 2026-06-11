@@ -4,6 +4,7 @@
 
   const FILES = {
     pipeline:  "data/unreleased-pipeline.md",
+    changelog: "data/changelog.md",
     structure: "data/release-structure.md",
     readme:    "README.md",
   };
@@ -67,6 +68,8 @@
       enhanceSummary(container);
       enhancePipeline(container);
       linkifyRefs(container);
+    } else if (container.id === "md-changelog") {
+      linkifyRefs(container);   // SHA + PR refs in the per-run diff entries
     }
   }
 
@@ -352,7 +355,10 @@
   (async () => {
     // pipeline + structure
     for (const [key, url] of Object.entries(FILES)) {
-      const id = key === "pipeline" ? "md-pipeline" : key === "structure" ? "md-structure" : "md-readme";
+      const id =
+        key === "pipeline"  ? "md-pipeline"  :
+        key === "changelog" ? "md-changelog" :
+        key === "structure" ? "md-structure" : "md-readme";
       try {
         const md = await load(url);
         mountInto(id, md);

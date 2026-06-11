@@ -31,6 +31,7 @@
       </a>
       <nav class="top-nav" id="top-nav" aria-label="Sections">
         <a href="#pipeline" class="nav-link" data-section="pipeline">Pipeline</a>
+        <a href="#changelog" class="nav-link" data-section="changelog">Changelog</a>
         <a href="#structure" class="nav-link" data-section="structure">Branch model</a>
         <a href="#refresh" class="nav-link" data-section="refresh">Refresh</a>
       </nav>
@@ -79,10 +80,21 @@
         </article>
       </section>
 
+      <!-- CHANGELOG -->
+      <section id="changelog" class="doc-section">
+        <div class="section-head">
+          <h2><span class="section-num">02</span> Changelog between runs</h2>
+          <p class="section-tag">What each refresh added, dropped (reverts), or re-versioned since the previous run.</p>
+        </div>
+        <article class="md-body" id="md-changelog">
+          <div class="loading">Loading changelog…</div>
+        </article>
+      </section>
+
       <!-- STRUCTURE -->
       <section id="structure" class="doc-section">
         <div class="section-head">
-          <h2><span class="section-num">02</span> Branch model &amp; release anatomy</h2>
+          <h2><span class="section-num">03</span> Branch model &amp; release anatomy</h2>
           <p class="section-tag">How <code>main → beta → stable</code> works, and how the current stable was built.</p>
         </div>
         <article class="md-body" id="md-structure">
@@ -93,7 +105,7 @@
       <!-- REFRESH -->
       <section id="refresh" class="doc-section">
         <div class="section-head">
-          <h2><span class="section-num">03</span> How this is refreshed</h2>
+          <h2><span class="section-num">04</span> How this is refreshed</h2>
           <p class="section-tag">This page is data-driven. Re-running the prompt overwrites the markdown and the site updates.</p>
         </div>
         <article class="md-body" id="md-readme">

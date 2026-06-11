@@ -1,6 +1,6 @@
 # Flutter — Unreleased `main` pipeline
 
-> Generated: 2026-06-10 · Baseline: everything on `main` after the **3.44 branch cut (2026-04-10)** ·
+> Generated: 2026-06-11 · Baseline: everything on `main` after the **3.44 branch cut (2026-04-10)** ·
 > Destined for **3.45 (beta)** and **3.46 (main)**. Raw merged commits — NOT official release notes.
 > Autorolls / CI / test-refactor churn filtered out.
 
@@ -35,7 +35,8 @@ edge-to-edge fixes; MediaTek visual-corruption fix (`53a82b6`).
 - `ImageStreamListener.reportErrors` callback (`0254afb`); `ImageIcon.useOriginalColors` (`238d79a`)
 - Hidden `IndexedStack` children no longer take focus (`3955e2b`)
 - Spell-check disabled on obscured fields (`1d139c1`); better `Navigator.pop` type-mismatch error (`40135be`)
-- Leak/crash fixes: `InteractiveViewer` `CurvedAnimation` leak (`86b9723`), `OverlayPortal`-in-`Table` crash (`f9af233`), hit-test vs traversal-tree mismatches (`c7f49fe`)
+- Stylus button support relanded (`8db3a26`, #187629)
+- Leak/crash fixes: `InteractiveViewer` `CurvedAnimation` leak (`86b9723`), `OverlayPortal`-in-`Table` crash (`f9af233`), hit-test vs traversal-tree mismatches (`c7f49fe`), `ShapeDecoration.lerp` gradient↔color crash (`b79192e`, #187368)
 
 ### Accessibility
 - Android high-contrast + color-inversion (`8bd5cd5`), `CONTENT_CHANGE_TYPE_EXPANDED` (`1b3faac`), sibling-node semantics merging (`b8ed448`), a11y block also blocks keyboard focus (`146e6ae`)

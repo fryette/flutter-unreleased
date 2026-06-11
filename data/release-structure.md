@@ -4,9 +4,9 @@
 
 A commit flows **`main` → `beta` (candidate cut) → `stable`**.
 
-| Branch | State (2026-06-10) | Role |
+| Branch | State (2026-06-11) | Role |
 |---|---|---|
-| **`main`** (= `master`, same HEAD) | `c0a1129`, 2026-06-10 | Dev tip — every merged PR + autorolls; **3.46+** accumulates here |
+| **`main`** (= `master`, same HEAD) | `b79192e`, 2026-06-11 | Dev tip — every merged PR + autorolls; **3.46+** accumulates here |
 | **`beta`** | `flutter-3.45-candidate.0` | Next stable, **3.45**, baking now (builds tagged `3.45.0-x.y.pre`) |
 | **`stable`** | **3.44.1** | Production |
 
