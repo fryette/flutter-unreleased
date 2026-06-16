@@ -1,7 +1,7 @@
 # Flutter — Unreleased `main` pipeline
 
-> Generated: 2026-06-15 · Baseline: everything on `main` after the **3.44 branch cut (2026-04-10)** ·
-> main HEAD: `4a60eb69` (2026-06-15). Destined for **3.45 (beta)** and **3.46 (main)**. Raw merged commits — NOT official release notes.
+> Generated: 2026-06-16 · Baseline: everything on `main` after the **3.44 branch cut (2026-04-10)** ·
+> main HEAD: `b38cbdd0` (2026-06-16). Destined for **3.45 (beta)** and **3.46 (main)**. Raw merged commits — NOT official release notes.
 > Autorolls / CI / test-refactor churn filtered out.
 
 ## Headline themes
@@ -50,6 +50,7 @@ edge-to-edge fixes; MediaTek visual-corruption fix (`53a82b6`).
 - SwiftPM: stop prefetching packages on `pub get` (`1750f1a`), concurrent FS-creation crash fix (`9716071`), warnings shown just before build (`927c1a6`)
 - Platform-view hitTest reland (`7266dd5`); period chars allowed in framework names (`0ebbc3f`)
 - UIScene events filtered to only those relating to the Flutter VC scene, fixing spurious lifecycle events from multi-scene apps (`25339374`, #187987)
+- Skip non-tappable web-view workaround on iOS 26.4 — avoids unnecessary input-handling bypass on newer iOS (`121dbb62`, #185424)
 
 ### Android
 - AGP 9 templates/test apps (`ff31522`,`4a41b27`); API 37 tools (`0a1f556`); MediaTek corruption fix (`53a82b6`)
@@ -59,6 +60,7 @@ edge-to-edge fixes; MediaTek visual-corruption fix (`53a82b6`).
 - Custom KGP task + migration to AGP API for KGP version detection — resolves Gradle compatibility issues (`dd2d0ff6`, #182788)
 - Added 30-second timeouts to `adb stopApp` and `adb uninstallApp` calls to avoid indefinite hangs (`ca6bf8d3`, #187876)
 - Optimize SHA hash calculation of generated APK — faster builds (`a49a6744`, #187184)
+- Fail gracefully on Android AVD lock errors during `flutter` startup — prevents cryptic crash when another process holds the AVD lock (`6469c0f3`, #187200)
 
 ### Web / WASM
 - Skwasm text/path-decode optimization, no dynamic boxing under Wasm (`eb9b7d0`); heap alloc for stack-busting buffers (`c2890cc`)
@@ -66,6 +68,8 @@ edge-to-edge fixes; MediaTek visual-corruption fix (`53a82b6`).
 - Cross-Origin Storage initial support (`ff066f0`); `canvaskit_chromium` size reduction (`3b97cd4`); `WebParagraph` cutoff fix (`491c3ac`)
 - Web hot reload treated as hot restart (`735966b`); shader recompile + unified asset processing (`21c6566`, after a revert)
 - Remove dynamic module loading code from the Flutter web engine (`b419e1e2`, #187777)
+- `RenderParagraph` now marks itself as needing paint after a device-pixel-ratio change — fixes missing text repaint on DPR changes (`072b85c0`, #186968)
+- `WebParagraph` configuration API changes — new knobs for paragraph measurement and layout behavior (`c28687d3`, #187188)
 
 ### Desktop
 - Win32 (`db976c1`) + Linux (`02a06a8`) popup windows; sized-to-content/dialog windows, `decorated` flag removed (`09380fe`); platform handles exposed (`5463d9c`)
@@ -74,6 +78,7 @@ edge-to-edge fixes; MediaTek visual-corruption fix (`53a82b6`).
 - Fix transposed width/height in `OnEmptyFrameGenerated` causing corrupted window size on Win32 (`6ca03c62`, #187954)
 - Remove `EnableTransparentWindowBackground` — had no real effect and is unsupported on Windows 10 (`27226d4d`, #187848)
 - Windows switches to OpenGLESSDF renderer path (`24e321d4`, #187877)
+- Gamma correction added to Windows text rendering — improves text clarity at sub-pixel level (`02fbac5a`, #187871)
 
 ### Engine / Impeller
 - Impeller default on macOS (`543b75f`); instanced rendering everywhere (`1d9d637`); block-compressed textures (`fe96572`); SDF disable per-paint (`021d999`)
@@ -81,6 +86,7 @@ edge-to-edge fixes; MediaTek visual-corruption fix (`53a82b6`).
 - Fixed-rate texture compression now retries uncompressed when the budget is exhausted (`5177105`, #187586)
 - Fix dirty-range race condition in `DeviceBufferGLES` uploads — prevented corrupted buffer uploads under concurrent access (`08ae8c67`, #187932)
 - Allow sampling textures with manually-uploaded mip levels in Impeller (`59ab469f`, #187729)
+- APNG decoder: validate chunk data length before calling `GetChunkSize` to prevent integer overflow in chunk size calculation (`24771efd`, #187949)
 
 ### Flutter GPU (experimental)
 - Instanced draws (`8a4cca4`), explicit draw counts (`d0d06b2`), vertex layout (`12d86bc`)

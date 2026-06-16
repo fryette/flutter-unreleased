@@ -1,10 +1,10 @@
 # Flutter — Unreleased SDK Tracker
 
 > **Snapshot**
-> - **Last refreshed:** 2026-06-15
+> - **Last refreshed:** 2026-06-16
 > - **Latest stable:** 3.44.1 (Dart 3.12.1) — docs confirm 3.44.0; patch 3.44.1 per tag
 > - **Next stable (on `beta`):** 3.45 — branch `flutter-3.45-candidate.0`
-> - **Bleeding edge (`main` = `master`):** 3.46-bound; `main` HEAD `4a60eb69` (2026-06-15)
+> - **Bleeding edge (`main` = `master`):** 3.46-bound; `main` HEAD `b38cbdd0` (2026-06-16)
 > - **Dart on `main`:** 3.13.0 (unreleased — primary constructors, new core APIs, lint rules)
 > - **3.44 release-branch cut:** 2026-04-10 — everything on `main` after this date is the "unreleased" set.
 

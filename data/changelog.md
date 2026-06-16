@@ -4,6 +4,13 @@
 > Each entry covers the `main` slice mined since the previous run's checkpoint:
 > what was **added**, what was **removed** (reverted / dropped), and any **version** moves.
 
+## 2026-06-16 — main HEAD `4a60eb69` → `b38cbdd0`
+25 commits in the slice; 11 were noise (autorolls, CI, test-only) and dropped. 6 meaningful (2 paired revert/original cancel out).
+
+- **Added** — iOS: skip non-tappable web-view workaround on iOS 26.4 (`121dbb62`, #185424). Web: `RenderParagraph` repaint after DPR change (`072b85c0`, #186968); `WebParagraph` configuration API changes (`c28687d3`, #187188). Desktop/Windows: gamma correction for Windows text rendering (`02fbac5a`, #187871). Android tooling: fail gracefully on AVD lock errors at startup (`6469c0f3`, #187200). Engine: APNG decoder chunk-length validation to prevent integer overflow (`24771efd`, #187949).
+- **Removed** — none (the `[a11y] Map semantics roles to Android classes` revert pair cancelled out; not in pipeline).
+- **Version moves** — none (stable 3.44.1 / next 3.45 / 3.46-bound; no Dart roll).
+
 ## 2026-06-15 — main HEAD `b79192e` → `4a60eb69`
 60 commits in the slice; 38 were noise (autorolls, docs, test-only, CI) and dropped. 22 meaningful.
 
