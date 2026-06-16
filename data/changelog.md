@@ -4,6 +4,13 @@
 > Each entry covers the `main` slice mined since the previous run's checkpoint:
 > what was **added**, what was **removed** (reverted / dropped), and any **version** moves.
 
+## 2026-06-16 (version correction) — no new main commits
+No new `main` commits mined. Version correction only.
+
+- **Added** — none.
+- **Removed** — none.
+- **Version moves** — stable **3.44.1 (Dart 3.12.1) → 3.44.2 (Dart 3.12.2)**. The prior runs used `releases/latest` which returns pre-release tags; the correct source is the `stable` branch commit log. Fixed the prompt and all snapshots accordingly.
+
 ## 2026-06-16 — main HEAD `4a60eb69` → `b38cbdd0`
 25 commits in the slice; 11 were noise (autorolls, CI, test-only) and dropped. 6 meaningful (2 paired revert/original cancel out).
 

@@ -1,7 +1,7 @@
 # Flutter — Unreleased `main` pipeline
 
-> Generated: 2026-06-16 · Baseline: everything on `main` after the **3.44 branch cut (2026-04-10)** ·
-> main HEAD: `b38cbdd0` (2026-06-16). Destined for **3.45 (beta)** and **3.46 (main)**. Raw merged commits — NOT official release notes.
+> Generated: 2026-06-16 · main HEAD `b38cbdd0` · Stable: **3.44.2 (Dart 3.12.2)** · Baseline: everything on `main` after the **3.44 branch cut (2026-04-10)** ·
+> Destined for **3.45 (beta)** and **3.46 (main)**. Raw merged commits — NOT official release notes.
 > Autorolls / CI / test-refactor churn filtered out.
 
 ## Headline themes

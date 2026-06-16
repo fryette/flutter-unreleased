@@ -2,7 +2,7 @@
 
 > **Snapshot**
 > - **Last refreshed:** 2026-06-16
-> - **Latest stable:** 3.44.1 (Dart 3.12.1) — docs confirm 3.44.0; patch 3.44.1 per tag
+> - **Latest stable:** 3.44.2 (Dart 3.12.2)
 > - **Next stable (on `beta`):** 3.45 — branch `flutter-3.45-candidate.0`
 > - **Bleeding edge (`main` = `master`):** 3.46-bound; `main` HEAD `b38cbdd0` (2026-06-16)
 > - **Dart on `main`:** 3.13.0 (unreleased — primary constructors, new core APIs, lint rules)
@@ -20,8 +20,15 @@ flutter/flutter `main` that has NOT yet shipped in a stable release, then overwr
 result files here.
 
 Steps:
-1. Latest STABLE: from https://docs.flutter.dev/release/release-notes and the `stable`
-   branch, find the current stable version + tag and its bundled Dart version.
+1. Latest STABLE: DO NOT use `releases/latest` (returns pre-release tags). Instead:
+   a) Run `gh api "repos/flutter/flutter/commits?sha=stable&per_page=3" --jq '.[].commit.message | split("\n")[0]'`
+      and look for a line like "Update `engine.version` for X.Y.Z stable release" — that X.Y.Z is current stable.
+   b) Confirm the bundled Dart version: run
+      `gh api "repos/flutter/flutter/commits?sha=stable&per_page=5" --jq '[.[].commit.message | split("\n")[0]] | map(select(test("Dart")))'`
+      — look for "Update Flutter DEPS to Dart <sha>"; then find the matching Dart tag via
+      `gh api "repos/dart-lang/sdk/git/refs/tags" --jq '.[].ref' | grep -E "^refs/tags/[0-9]" | grep -v dev | tail -5`
+      and pick the highest non-dev tag that matches the major.minor of the current Dart-on-stable.
+   If stable is unchanged from the Snapshot, skip and move on.
 2. Next versions: read `bin/internal/release-candidate-branch.version` on the `beta` branch
    -> `flutter-X.Y-candidate.0` = the next stable (e.g. 3.45) baking on beta. ALSO track the
    version after it (e.g. 3.46), which is what `main` is currently bound to. Flutter sometimes
